@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bespoke Concierge & Bookings | The Wedding Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+<style>
+/* ==========================================================================
+   GLOBAL SETTINGS & UTILITIES
+   ========================================================================== */
+:root {
+    --primary: #ff4f81;
+    --primary-gradient: linear-gradient(135deg, #ff4f81, #ff758c, #ffb6c1);
+    --gold: #d4af37;
+    --dark: #111111;
+    --dark-card: #1a1a1a;
+    --text-muted: #777777;
+    --glass: rgba(255, 255, 255, 0.95);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #fff0f5, #ffe4ec, #ffffff);
+    color: #333;
+    line-height: 1.7;
+    padding-top: 100px; /* Offset for fixed header */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+/* Titles Components */
+.section-title-block {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+
+.section-title-block p {
+    color: var(--primary);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+/* Luxury Interactive Buttons */
+.action-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(255, 79, 129, 0.25);
+    transition: all 0.4s ease;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(255, 79, 129, 0.4);
+}
+
+/* ==========================================================================
+   HEADER COMPONENT
+   ========================================================================== */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary-gradient);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    animation: slideDown 1s ease;
+}
+
+.logo-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.rings {
+    position: relative;
+    width: 85px;
+    height: 60px;
+}
+
+.ring {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--gold);
+    border-radius: 50%;
+    animation: rotateRing 5s linear infinite;
+}
+
+.ring1 { left: 0; top: 5px; }
+.ring2 { right: 0; top: 5px; }
+
+.diamond {
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border: 3px solid #ff4f81;
+    transform: rotate(45deg);
+    animation: sparkle 1.5s infinite;
+}
+
+.logo-text h1 {
+    font-size: 38px;
+    color: #fff;
+    font-family: 'Great Vibes', cursive;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.logo-text p {
+    font-size: 13px;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+nav .nav-links-container {
+    display: flex;
+    gap: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 30px;
+    transition: 0.5s;
+}
+
+nav a:hover {
+    background: #fff;
+    color: #ff4f81;
+    transform: translateY(-5px);
+}
+
+/* ==========================================================================
+   CENTRAL BOOKING & CONTACT ENGINE
+   ========================================================================== */
+.contact-interactive-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    background: var(--glass);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+    margin-bottom: 60px;
+}
+
+.contact-form-portal {
+    padding: 50px;
+}
+
+.form-group-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.contact-form-portal input, 
+.contact-form-portal select, 
+.contact-form-portal textarea {
+    width: 100%;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    border: 1px solid #e5e5e5;
+    background: #fdfdfd;
+    border-radius: 12px;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.contact-form-portal input:focus, 
+.contact-form-portal select:focus, 
+.contact-form-portal textarea:focus {
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(255, 79, 129, 0.08);
+}
+
+.contact-media-sidebar {
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;
+}
+
+.contact-media-sidebar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contact-info-card {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 79, 129, 0.94), rgba(255, 117, 140, 0.94));
+    padding: 50px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+.info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.info-row i {
+    color: var(--gold);
+    font-size: 24px;
+    margin-top: 4px;
+}
+
+.info-row h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.info-row p {
+    color: rgba(255,255,255,0.9);
+    font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   LIVE INTERACTIVE MAP CONTAINER
+   ========================================================================== */
+#map-container {
+    width: 100%;
+    height: 450px;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    border: 8px solid var(--glass);
+    margin-bottom: 80px;
+}
+
+/* ==========================================================================
+   PAST TRIUMPHS & HISTORICAL METRICS (PREVIOUS BOOKINGS)
+   ========================================================================== */
+.history-metrics-shelf {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-bottom: 60px;
+}
+
+.metric-pill-card {
+    background: var(--glass);
+    padding: 30px 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    border: 1px solid rgba(255, 79, 129, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.metric-pill-card:hover {
+    transform: translateY(-5px);
+}
+
+.metric-pill-card i {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.metric-pill-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--dark);
+}
+
+.metric-pill-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Archive Showcase Grid */
+.past-triumphs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 30px;
+}
+
+.archive-card {
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.04);
+    transition: all 0.4s ease;
+}
+
+.archive-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(110, 78, 87, 0.12);
+}
+
+.archive-img-frame {
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+}
+
+.archive-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.archive-card:hover .archive-img-frame img {
+    transform: scale(1.06);
+}
+
+.archive-status-tag {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 128, 0, 0.9);
+    backdrop-filter: blur(5px);
+    color: #fff;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.archive-body {
+    padding: 30px;
+}
+
+.archive-meta {
+    font-size: 0.8rem;
+    color: var(--primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.archive-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--dark);
+    margin-bottom: 12px;
+}
+
+.archive-body p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.archive-foot-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f5f5f5;
+    padding-top: 15px;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.archive-foot-details span i {
+    color: var(--gold);
+    margin-right: 5px;
+}
+
+/* ==========================================================================
+   FOOTER COMPONENT
+   ========================================================================== */
+.footer {
+    background: linear-gradient(135deg, #111, #1f1f1f, #2b2b2b);
+    color: #fff;
+    padding-top: 80px;
+    margin-top: 80px;
+}
+
+.footer-container {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    padding-bottom: 50px;
+}
+
+.footer-box h2 {
+    font-size: 38px;
+    margin-bottom: 20px;
+    color: var(--primary);
+    font-family: 'Great Vibes', cursive;
+}
+
+.footer-box h3 {
+    margin-bottom: 20px;
+    color: #ffb6c1;
+}
+
+.footer-box p, .footer-box ul li {
+    margin-bottom: 15px;
+    color: #ddd;
+}
+
+.footer-box ul { list-style: none; }
+.footer-box ul li a {
+    text-decoration: none;
+    color: #ddd;
+    transition: 0.4s;
+}
+
+.footer-box ul li a:hover {
+    color: var(--primary);
+    padding-left: 8px;
+}
+
+.social-icons { margin-top: 20px; }
+.social-icons a {
+    width: 45px;
+    height: 45px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #333;
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: 0.7s;
+}
+
+.social-icons a:hover {
+    background: var(--primary);
+    transform: translateY(-8px) rotate(360deg);
+}
+
+.footer-bottom {
+    background: #0f0f0f;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+
+@keyframes rotateRing { 100% { transform: rotate(360deg); } }
+@keyframes sparkle { 50% { transform: rotate(45deg) scale(1.3); opacity: 0.7; } }
+@keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+
+
+@media(max-width: 768px) {
+    header { flex-direction: column; gap: 10px; padding: 15px 4%; }
+    body { padding-top: 160px; }
+    .contact-form-portal { padding: 30px 20px; }
+    .form-group-row { grid-template-columns: 1fr; gap: 0; }
+}
+</style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-box">
+            <div class="rings">
+                <div class="ring ring1"><div class="diamond"></div></div>
+                <div class="ring ring2"></div>
+            </div>
+            <div class="logo-text">
+                <h1>The Wedding Hub</h1>
+                <p>Dream Weddings Planner</p>
+            </div>
+        </div>
+        <nav>
+            <div class="nav-links-container">
+               <a href="about wh.html">About</a>
+               <a href="services.html">Services</a>
+               <a href="gallery.html">Gallery</a>
+               <a href="team.html">Team</a>
+               <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <section class="section-title-block">
+            <h2>Secure Your Grand Date</h2>
+            <p>Initiate Your Bespoke Concierge Ticket</p>
+        </section>
+
+        <div class="contact-interactive-wrapper">
+            <form class="contact-form-portal" action="#" onsubmit="event.preventDefault(); alert('Your Concierge Booking Ticket has been verified and launched!');">
+                <div class="form-group-row">
+                    <input type="text" placeholder="First Name" required>
+                    <input type="text" placeholder="Last Name" required>
+                </div>
+                <input type="email" placeholder="Secure Email Address" required>
+                
+                <div class="form-group-row">
+                    <input type="date" title="Target Milestone Date" required>
+                    <select required title="Select Luxury Experience Framework">
+                        <option value="" disabled selected>Experience Tier...</option>
+                        <option value="royal">Royal Palace Heritage Package</option>
+                        <option value="beach">Bespoke Coastal Shoreline Layout</option>
+                        <option value="editorial">Modern Editorial Minimalist</option>
+                    </select>
+                </div>
+                
+                <input type="text" placeholder="Target Coordinate Destination Venue" required>
+                <textarea rows="4" placeholder="Tell us about your grand spatial vision..." required></textarea>
+                <button type="submit" class="action-btn">Launch Reservation Ticket</button>
+            </form>
+
+            <div class="contact-media-sidebar">
+                <img src="https://images.unsplash.com/photo-1519225495810-7512c696505a?q=80&w=600&auto=format&fit=crop" alt="Luxury Table Setup Details">
+                <div class="contact-info-card">
+                    <div class="info-row">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <h4>Corporate Headquarters</h4>
+                            <p>Chittoor, Andhra Pradesh, India</p>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <h4>Bespoke Concierge Hotline</h4>
+                            <p>+91 98765 43210</p>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <h4>Digital Processing Inbox</h4>
+                            <p>concierge@theweddinghub.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="section-title-block">
+            <h2>Corporate Headquarters Venue</h2>
+            <p>Locate our design studios & consultation suites</p>
+        </section>
+        <div id="map-container"></div>
+
+        <section class="section-title-block">
+            <h2>Our Architectural Heritage</h2>
+            <p>Browse Metrics & Archives of Past Triumphs</p>
+        </section>
+
+        <div class="history-metrics-shelf">
+            <div class="metric-pill-card">
+                <i class="fa-solid fa-heart-circle-check"></i>
+                <h3>340+</h3>
+                <p>Weddings Executed</p>
+            </div>
+            <div class="metric-pill-card">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <h3>18+</h3>
+                <p>Destination Coordinates</p>
+            </div>
+            <div class="metric-pill-card">
+                <i class="fa-solid fa-award"></i>
+                <h3>100%</h3>
+                <p>Luxury Rating</p>
+            </div>
+        </div>
+
+        <div class="past-triumphs-grid">
+            <div class="archive-card">
+                <div class="archive-img-frame">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=500&auto=format&fit=crop" alt="Traditional Royal Setup Archive">
+                    <span class="archive-status-tag">Completed</span>
+                </div>
+                <div class="archive-body">
+                    <div class="archive-meta">Royal Heritage Archetype</div>
+                    <h3>The Palace Symphony</h3>
+                    <p>A grand multi-day execution combining ancient heritage architecture with contemporary floral installations.</p>
+                    <div class="archive-foot-details">
+                        <span><i class="fa-solid fa-calendar-days"></i> Dec 2025</span>
+                        <span><i class="fa-solid fa-location-dot"></i> Udaipur, India</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="archive-card">
+                <div class="archive-img-frame">
+                    <img src="https://images.unsplash.com/photo-1544078751-58fed2b32c83?q=80&w=500&auto=format&fit=crop" alt="Modern Minimalist Setup Archive">
+                    <span class="archive-status-tag">Completed</span>
+                </div>
+                <div class="archive-body">
+                    <div class="archive-meta">Modern Glass House Layout</div>
+                    <h3>Luminous Botanical Dream</h3>
+                    <p>Transformed an open estate meadow using crystalline ambient lighting design and customized cascading glass panels.</p>
+                    <div class="archive-foot-details">
+                        <span><i class="fa-solid fa-calendar-days"></i> Feb 2026</span>
+                        <span><i class="fa-solid fa-location-dot"></i> Bangalore, India</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-box">
+                <h2>The Wedding Hub</h2>
+                <p>Creating magical wedding experiences with luxury decorations and unforgettable memories.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-box">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-box">
+                <h3>Contact</h3>
+                <p>📍 Chittoor, Andhra Pradesh</p>
+                <p>📞 +91 98765 43210</p>
+                <p>✉ info@theweddinghub.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 The Wedding Hub | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        // Initialize Map centered to Chittoor, Andhra Pradesh coordinate matrix point locations
+        const map = L.map('map-container').setView([13.2172, 79.1003], 13);
+        
+        // Load OpenStreetMap Vector Layers
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add Customized Brand Pinpoint Anchor Marker
+        const marker = L.marker([13.2172, 79.1003]).addTo(map);
+        marker.bindPopup("<b>The Wedding Hub HQ</b><br>Luxury Design Suites.").openPopup();
+    </script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding Hub | Luxury Experiences</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- BASE STYLES & RESET --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; overflow-x: hidden; color: #333; background-color: #fdfbfb; }
+
+        /* Page Layout Logic */
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 100px 8% 60px 8%;
+        }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; }
+        
+        /* Typography Helpers */
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h3 { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: #222; margin-bottom: 5px; }
+        .section-header p { font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto; }
+        .divider { width: 80px; height: 3px; background: #d63384; margin: 15px auto; border-radius: 2px; }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 8%; background: rgba(11, 173, 160, 0.95); 
+            backdrop-filter: blur(10px);
+            position: fixed; width: 100%; top: 0; z-index: 2000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        .nav-logo { font-family: 'Playfair Display', serif; color: white; font-size: 1.6rem; font-weight: bold; letter-spacing: 1px; }
+        .navbar ul { display: flex; list-style: none; align-items: center; }
+        .navbar ul li a { text-decoration: none; color: #fff; margin-left: 25px; transition: 0.3s ease; font-size: 0.95rem; font-weight: 400; }
+        .navbar ul li a:hover { color: #fce4ec; text-shadow: 0 0 8px rgba(255,255,255,0.6); }
+
+        /* --- HOME HERO --- */
+        .hero-home {
+            background: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600') center/cover no-repeat fixed;
+            text-align: center;
+            position: relative;
+        }
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.4);
+            width: 100%; height: 100%; position: absolute; top: 0; left: 0;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .logo-box {
+            background: rgba(252, 228, 236, 0.95); padding: 50px 70px; border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3); margin-bottom: 30px;
+            animation: float 4s ease-in-out infinite; border: 1px solid rgba(255,255,255,0.5);
+        }
+        .logo-box h1 { font-family: 'Great Vibes', cursive; color: #d63384; font-size: 4rem; margin-bottom: 5px; }
+        .logo-box p { font-size: 1rem; tracking-index: 2px; text-transform: uppercase; color: #555; font-weight: 600; }
+        .hero-text h2 { font-family: 'Playfair Display', serif; color: white; font-size: 3rem; margin-top: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-text p { color: #f0f0f0; font-size: 1.2rem; margin: 10px 0 25px 0; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+
+        /* --- WEDDING DECOR PAGE --- */
+        .decor-section { background-color: #fff; }
+        .decor-showcase { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+        .decor-card {
+            background: #fff; border-radius: 20px; overflow: hidden; width: 350px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+            position: relative;
+        }
+        .decor-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .decor-img-wrapper { width: 100%; height: 280px; overflow: hidden; position: relative; }
+        .decor-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .decor-card:hover .decor-img-wrapper img { transform: scale(1.1); }
+        .decor-info { padding: 25px; text-align: center; }
+        .decor-info h4 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #0bada0; margin-bottom: 10px; }
+        .decor-info p { font-size: 0.9rem; color: #666; line-height: 1.5; }
+
+        /* --- COCKTAIL DECOR PAGE (NEW) --- */
+        .cocktail-section { background: linear-gradient(135deg, #110924 0%, #1f0d3d 100%); color: #fff; }
+        .cocktail-section .section-header h3 { color: #fff; }
+        .cocktail-section .section-header p { color: #b1a2cd; }
+        .cocktail-section .divider { background: #9c27b0; }
+        
+        .grid-3d { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; perspective: 1000px; }
+        .card-flip-container { width: 340px; height: 420px; position: relative; cursor: pointer; }
+        .card-flipper { width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-flip-container:hover .card-flipper { transform: rotateY(180deg); }
+        
+        .front, .back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
+        .front img { width: 100%; height: 100%; object-fit: cover; }
+        .front-overlay { position: absolute; bottom: 0; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); text-align: center; }
+        .front-overlay h4 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #e040fb; }
+        
+        .back { background: #291252; transform: rotateY(180deg); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; text-align: center; border: 2px solid #9c27b0; }
+        .back h4 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #e040fb; margin-bottom: 15px; }
+        .back p { font-size: 0.95rem; color: #d1c4e9; line-height: 1.6; }
+        .neon-glow { animation: neonPulse 2s ease-in-out infinite alternate; }
+
+        /* --- LIGHT DINNER DECOR PAGE (NEW) --- */
+        .dinner-section { background: #fdf8f5; position: relative; overflow: hidden; }
+        .dinner-section .divider { background: #e0a96d; }
+        
+        .dinner-flex { display: flex; gap: 50px; align-items: center; flex-wrap: wrap; margin-top: 30px; }
+        .dinner-gallery { flex: 1 1 500px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .dinner-gallery img { width: 100%; height: 220px; object-fit: cover; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); transition: 0.4s; }
+        .dinner-gallery img:hover { transform: scale(1.05) rotate(1deg); }
+        
+        .dinner-desc { flex: 1 1 400px; padding: 20px; }
+        .dinner-desc h4 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #2c3531; margin-bottom: 15px; }
+        .dinner-desc p { color: #666; font-size: 1.05rem; line-height: 1.8; margin-bottom: 25px; }
+        .amenity-list { list-style: none; }
+        .amenity-list li { margin-bottom: 12px; font-weight: 500; display: flex; align-items: center; color: #444; }
+        .amenity-list li::before { content: "✨"; margin-right: 12px; font-size: 1.1rem; }
+
+        /* --- GALLERY & PORTFOLIO --- */
+        .bg-light { background-color: #f4fbf4; padding: 80px 8%; }
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px; padding-top: 40px;
+        }
+        .gallery-item { position: relative; border-radius: 15px; overflow: hidden; height: 280px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .gallery-item:hover img { transform: scale(1.15); filter: brightness(0.8); }
+
+        /* --- FOOTER --- */
+        footer { background: #111; color: #aaa; padding: 40px 20px; text-align: center; font-size: 0.9rem; border-top: 3px solid #0bada0; }
+        footer p { margin-bottom: 10px; }
+        footer a { color: #0bada0; text-decoration: none; }
+
+        /* --- REUSABLE BUTTON --- */
+        .btn {
+            display: inline-block; margin-top: 10px; padding: 14px 40px;
+            background: #d63384; color: white; text-decoration: none;
+            border-radius: 30px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-weight: 600;
+            box-shadow: 0 5px 15px rgba(214, 51, 132, 0.4); letter-spacing: 0.5px;
+        }
+        .btn:hover { background: #0bada0; transform: translateY(-4px); box-shadow: 0 8px 20px rgba(11, 173, 160, 0.4); }
+
+        /* --- ANIMATIONS ENGINE --- */
+        @keyframes float { 
+            0%, 100% { transform: translateY(0); } 
+            50% { transform: translateY(-15px); } 
+        }
+        @keyframes neonPulse {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px #9c27b0, 0 0 20px #9c27b0; }
+            to { text-shadow: 0 0 10px #fff, 0 0 20px #e040fb, 0 0 30px #e040fb; }
+        }
+        .animate-fade { animation: fadeInUp 1.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes fadeInUp { 
+            from { opacity: 0; transform: translateY(40px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 968px) {
+            .navbar ul { display: none; } /* Simplified for structural clarity */
+            .logo-box { padding: 35px 40px; }
+            .logo-box h1 { font-size: 3rem; }
+            .hero-text h2 { font-size: 2.2rem; }
+            .section-header h3 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <nav class="navbar">
+        <div class="nav-logo">The Wedding Hub</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#wedding-decor">Wedding Designs</a></li>
+            <li><a href="#cocktail-decor">Cocktail Nights</a></li>
+            <li><a href="#dinner-decor">Light Dinners</a></li>
+            <li><a href="#gallery">Portfolio</a></li>
+        </ul>
+    </nav>
+
+    <!-- PAGE 1: HOME HERO -->
+    <header id="home" class="page hero-home">
+        <div class="hero-overlay">
+            <div class="logo-box animate-fade">
+                <h1>The Wedding Hub</h1>
+                <p>Curators of Timeless Luxury</p>
+            </div>
+            <div class="hero-text animate-fade">
+                <h2>Bespoke Celebrations Manufactured Perfectly</h2>
+                <p>Architecting luxury decor milestones across Vizianagaram.</p>
+                <a href="#wedding-decor" class="btn">Explore Design Experiences</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- PAGE 2: WEDDING DECORATION PAGE -->
+    <section id="wedding-decor" class="page decor-section">
+        <div class="container">
+            <div class="section-header">
+                <h3>Main Wedding Decor</h3>
+                <div class="divider"></div>
+                <p>Immersive grand marriage transformations from structural ceiling integrations to custom conceptual architectural altars.</p>
+            </div>
+
+            <div class="decor-showcase">
+                <div class="decor-card">
+                    <div class="decor-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1519225495810-75178319a137?auto=format&fit=crop&w=800" alt="Royal Decor">
+                    </div>
+                    <div class="decor-info">
+                        <h4>Royal Maharaja Banquets</h4>
+                        <p>Plush symmetrical micro-velvet drapes structural systems loaded with custom ambient gold hardware accents.</p>
+                    </div>
+                </div>
+                <div class="decor-card">
+                    <div class="decor-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800" alt="Garden Decor">
+                    </div>
+                    <div class="decor-info">
+                        <h4>Bohemian Meadow Mandaps</h4>
+                        <p>Whimsical untamed imported floral installations layered upon geometric structured natural dark wood arrays.</p>
+                    </div>
+                </div>
+                <div class="decor-card">
+                    <div class="decor-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1522673607200-1648832cee98?auto=format&fit=crop&w=800" alt="Modern Decor">
+                    </div>
+                    <div class="decor-info">
+                        <h4>Minimalist High-Fashion Chic</h4>
+                        <p>Monochromatic clean-edge geometric structural platforms curated for sharp modern photographic depth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 3: COCKTAIL DECOR PAGE (NEW) -->
+    <section id="cocktail-decor" class="page cocktail-section">
+        <div class="container">
+            <div class="section-header">
+                <h3 class="neon-glow">Cocktail Night Decor</h3>
+                <div class="divider"></div>
+                <p>High-energy lounges designed with smart sensory lighting, neon art installations, and avant-garde structural styling.</p>
+            </div>
+
+            <div class="grid-3d">
+                <!-- Card 1 -->
+                <div class="card-flip-container">
+                    <div class="card-flipper">
+                        <div class="front">
+                            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800" alt="Neon Lounge">
+                            <div class="front-overlay"><h4>Electric Glam Lounge</h4></div>
+                        </div>
+                        <div class="back">
+                            <h4>Electric Glam</h4>
+                            <p>Interactive RGB LED matrix background drops, mirrored premium structural cocktail tables, and bright custom ultra-neon sign quotes.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="card-flip-container">
+                    <div class="card-flipper">
+                        <div class="front">
+                            <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=800" alt="Velvet Speakeasy">
+                            <div class="front-overlay"><h4>Midnight Speakeasy</h4></div>
+                        </div>
+                        <div class="back">
+                            <h4>Midnight Speakeasy</h4>
+                            <p>Moody emerald and deep plum luxury lounge spaces wrapped entirely with historical crystal chandeliers and premium warm low-lit profiles.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="card-flip-container">
+                    <div class="card-flipper">
+                        <div class="front">
+                            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800" alt="Futuristic Stage">
+                            <div class="front-overlay"><h4>Cyber-Luxury Stages</h4></div>
+                        </div>
+                        <div class="back">
+                            <h4>Cyber-Luxury Stages</h4>
+                            <p>Lasers synchronized precisely with intelligent ambient uplighting arrays to craft an engineered, unforgettable luxury concert atmosphere.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 4: LIGHT DINNER DECOR PAGE (NEW) -->
+    <section id="dinner-decor" class="page dinner-section">
+        <div class="container">
+            <div class="dinner-flex">
+                <div class="dinner-gallery">
+                    <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=600" alt="Tuscany Dinner Table">
+                    <img src="https://images.unsplash.com/photo-1505232458627-5ae907a89657?auto=format&fit=crop&w=600" alt="Overhead Lights">
+                    <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=600" alt="Table Details">
+                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=600" alt="Fairy Lights Canopy">
+                </div>
+                <div class="dinner-desc">
+                    <div style="text-align: left;" class="section-header">
+                        <h3>Intimate Light Dinner Layouts</h3>
+                        <div style="margin: 15px 0;" class="divider"></div>
+                    </div>
+                    <h4>Al-Fresco Intimate Receptions</h4>
+                    <p>Designed strictly for extended, detailed architectural tablescapes. We combine organic warm fairy light engineering with sophisticated running tables elements to build comfortable, luxury dining experiences.</p>
+                    <ul class="amenity-list">
+                        <li>Custom Overhead Micro-Fairy Light Canopy Suspensions</li>
+                        <li>Delicate Tapered Wax Candles & Fine Tuscan Glassware Styling</li>
+                        <li>Low-Intensity Ambient Edison Bulb Cascades</li>
+                        <li>Live Unplugged Acoustic Stage Architectural Backdrops</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="gallery" class="bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h3>Design Portfolio Showcase</h3>
+                <div class="divider"></div>
+                <p>A closer look inside the architectural design textures of our luxury events.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=500" alt="Detail 1"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&w=500" alt="Detail 2"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1465495910483-0d6745f57f1d?auto=format&fit=crop&w=500" alt="Detail 3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <p>&copy; 2026 The Wedding Hub | Ultra Luxury Event Production</p>
+        <p>Operational Flagship Studio located comfortably in <a href="#">Vizianagaram</a></p>
+    </footer>
+
+</body>
+</html>

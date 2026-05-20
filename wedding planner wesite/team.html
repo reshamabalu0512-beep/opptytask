@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team & Services | Wedding Hub</title>
+    <!-- Google Fonts for Elegant Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   CSS VARIABLES & BASE RESETS
+   ========================================================================== */
+:root {
+    --primary-color: #ff4f81;
+    --secondary-color: gold;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --bg-light: #fff9fa;
+    --card-bg: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding-top: 120px; /* Prevents fixed header from covering content */
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   FIXED APPLICATION HEADER & LOGO CONFIGURATIONS
+   ========================================================================== */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(255,79,129,0.95), rgba(255,117,140,0.95), rgba(255,182,193,0.92));
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    animation: slideDownHeader 1s ease forwards;
+}
+
+.logo-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.rings {
+    position: relative;
+    width: 85px;
+    height: 60px;
+}
+
+.ring {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--secondary-color);
+    border-radius: 50%;
+}
+
+.ring1 {
+    left: 0;
+    top: 5px;
+    animation: bounceRing1 4s ease-in-out infinite alternate;
+}
+
+.ring2 {
+    right: 0;
+    top: 5px;
+    animation: bounceRing2 4s ease-in-out infinite alternate;
+}
+
+.diamond {
+    position: absolute;
+    top: -10px;
+    left: 13px;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border: 3px solid #ff4f81;
+    transform: rotate(45deg);
+    animation: sparkle 1.5s infinite;
+}
+
+.logo-text h1 {
+    font-size: 38px;
+    color: #fff;
+    font-family: 'Great Vibes', cursive;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.logo-text p {
+    font-size: 13px;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+/* NAVIGATION LINKS */
+nav{
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#fff;
+    font-weight:600;
+    padding:10px 18px;
+    border-radius:30px;
+    transition:0.5s;
+}
+
+nav a:hover{
+    background:#fff;
+    color:#ff4f81;
+    transform:translateY(-5px);
+}
+/* ==========================================================================
+   PAGE BANNER & GENERAL CONTAINERS
+   ========================================================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.hub {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(rgba(255,117,140,0.05), rgba(255,182,193,0.15));
+    border-bottom: 1px solid rgba(255,79,129,0.1);
+    animation: revealBanner 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hub h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.hub p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #4a3b3e;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* ==========================================================================
+   TEAM SECTION: SLIDE-UP AND FADE ENTRY
+   ========================================================================== */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.team-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    opacity: 0; /* Base state for tracking entry animations */
+    animation: teamCardEntry 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Staggered load delays for team members */
+.team-grid .team-card:nth-child(1) { animation-delay: 0.2s; }
+.team-grid .team-card:nth-child(2) { animation-delay: 0.4s; }
+.team-grid .team-card:nth-child(3) { animation-delay: 0.6s; }
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(255, 79, 129, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img-container {
+    height: 320px;
+    overflow: hidden;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.team-card:hover .img-container img {
+    transform: scale(1.06);
+}
+
+.card-content {
+    padding: 25px;
+    text-align: center;
+}
+
+.card-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+}
+
+.card-content .role {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.card-content .bio {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 79, 129, 0.4), transparent);
+    margin: 60px 0;
+    opacity: 0.5;
+}
+
+/* ==========================================================================
+   SERVICES SECTION: POP/SCALE IN ENTRY
+   ========================================================================== */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: var(--card-bg);
+    border: 1px solid rgba(255, 79, 129, 0.08);
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    opacity: 0;
+    animation: serviceCardPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Staggered load delays for service blocks */
+.services-grid .service-card:nth-child(1) { animation-delay: 0.8s; }
+.services-grid .service-card:nth-child(2) { animation-delay: 1.0s; }
+.services-grid .service-card:nth-child(3) { animation-delay: 1.2s; }
+
+.service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+}
+
+.service-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.assigned-expert {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #fdf0f3;
+    padding-top: 15px;
+    margin-top: auto;
+}
+
+.assigned-expert img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+    border: 2px solid var(--primary-color);
+}
+
+.assigned-expert span {
+    font-size: 0.85rem;
+}
+
+/* UNIVERSAL FOOTER STYLE */
+.footer{
+    background:linear-gradient(135deg,#111,#1f1f1f,#2b2b2b);
+    color:#fff;
+    padding-top:80px;
+}
+
+.footer-container{
+    width:90%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:40px;
+    padding-bottom:50px;
+}
+
+.footer-box h2{
+    font-size:38px;
+    margin-bottom:20px;
+    color:#ff4f81;
+    font-family:'Great Vibes',cursive;
+}
+
+.footer-box h3{
+    margin-bottom:20px;
+    color:#ffb6c1;
+}
+
+.footer-box p,
+.footer-box ul li{
+    margin-bottom:15px;
+    color:#ddd;
+}
+
+.footer-box ul{
+    list-style:none;
+}
+
+.footer-box ul li a{
+    text-decoration:none;
+    color:#ddd;
+    transition:0.4s;
+}
+
+.footer-box ul li a:hover{
+    color:#ff4f81;
+    padding-left:8px;
+}
+
+/* SOCIAL ICONS */
+
+.social-icons{
+    margin-top:20px;
+}
+
+.social-icons a{
+    width:45px;
+    height:45px;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    background:#333;
+    color:#fff;
+    text-decoration:none;
+    margin-right:10px;
+    transition:0.7s;
+}
+
+.social-icons a:hover{
+    background:#ff4f81;
+    transform:translateY(-8px) rotate(360deg);
+}
+
+/* FOOTER BOTTOM */
+
+.footer-bottom{
+    background:#0f0f0f;
+    text-align:center;
+    padding:20px;
+    margin-top:30px;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes rotateRing{
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes sparkle{
+    50%{
+        transform:rotate(45deg) scale(1.3);
+        opacity:0.7;
+    }
+}
+
+@keyframes slideDown{
+    from{
+        transform:translateY(-100%);
+    }
+
+    to{
+        transform:translateY(0);
+    }
+}
+
+@keyframes zoomText{
+    from{
+        opacity:0;
+        transform:scale(0.5);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes bounceBtn{
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+@keyframes float{
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+@keyframes floatIcon{
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+@keyframes floatCircle{
+    100%{
+        transform:translateY(50px);
+    }
+}
+
+@keyframes floatCircle2{
+    100%{
+        transform:translateX(-50px);
+    }
+}
+
+@keyframes videoZoom{
+    100%{
+        transform:scale(1.1);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:992px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
+        padding:15px;
+    }
+
+    nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero-content h1{
+        font-size:60px;
+    }
+}
+
+@media(max-width:768px){
+
+    .hero-content h1{
+        font-size:42px;
+    }
+
+    .hero-content p{
+        font-size:16px;
+    }
+
+    .section-title h2,
+    .about-content h2{
+        font-size:35px;
+    }
+
+    .logo-box{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    nav ul{
+        gap:10px;
+    }
+}
+
+@media(max-width:480px){
+
+    .hero-content h1{
+        font-size:32px;
+    }
+
+    .btn{
+        padding:12px 25px;
+        font-size:14px;
+    }
+
+    nav ul{
+        flex-direction:column;
+    }
+}
+
+
+@keyframes slideDownHeader {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: rotate(45deg) scale(1); opacity: 0.8; }
+    50% { transform: rotate(45deg) scale(1.2); opacity: 1; box-shadow: 0 0 10px #fff; }
+}
+
+
+
+@keyframes teamCardEntry {
+    0% { opacity: 0; transform: translateY(50px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes serviceCardPop {
+    0% { opacity: 0; transform: scale(0.85); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+
+@media (max-width: 768px) {
+    header { padding: 15px 4%; flex-direction: column; gap: 15px; }
+    body { padding-top: 180px; }
+    nav ul { width: 100%; justify-content: center; }
+}
+</style>
+
+</head>
+<body>
+   <header>
+        <div class="logo-box">
+            <div class="rings">
+                <div class="ring ring1"><div class="diamond"></div></div>
+                <div class="ring ring2"></div>
+            </div>
+            <div class="logo-text">
+                <h1>The Wedding Hub</h1>
+                <p>Dream Weddings Planner</p>
+            </div>
+        </div>
+    <nav>
+       <div class="nav-links-container">
+           <a href="about wh.html">About</a>
+           <a href="services.html">Services</a>
+           <a href="gallery.html">Gallery</a>
+           <a href="team.html">Team</a>
+           <a href="contact.html">Contact</a>
+            
+
+        </div>
+    </nav>
+</header>
+
+    <div class="hub">
+        <h1>Meet Our Dream Creators</h1>
+        <p>The passionate experts crafting your perfect happily ever after.</p>
+    </div>
+
+    <div class="container">
+        
+        <!-- Team Section -->
+        <section class="section-title">
+            <h2>The Wedding Hub Team</h2>
+            <p>Dedicated professionals managing every detail of your special day</p>
+        </section>
+
+        <div class="team-grid">
+            <!-- Member 1 -->
+            <div class="team-card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" alt="Sarah Jenkins">
+                </div>
+                <div class="card-content">
+                    <h3>Sarah Jenkins</h3>
+                    <p class="role">Lead Wedding Planner</p>
+                    <p class="bio">With over 8 years of luxury planning experience, Sarah turns chaotic ideas into seamless, breathtaking realities.</p>
+                </div>
+            </div>
+
+            <!-- Member 2 -->
+            <div class="team-card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400" alt="David Chen">
+                </div>
+                <div class="card-content">
+                    <h3>David Chen</h3>
+                    <p class="role">Chief Photographer & Visual Director</p>
+                    <p class="bio">David captures emotions rather than just poses, ensuring your memories look timeless and cinematic.</p>
+                </div>
+            </div>
+
+            <!-- Member 3 -->
+            <div class="team-card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400" alt="Elena Rostova">
+                </div>
+                <div class="card-content">
+                    <h3>Elena Rostova</h3>
+                    <p class="role">Floral & Decor Designer</p>
+                    <p class="bio">Elena transforms blank spaces into enchanted environments, prioritizing seasonal blooms and bespoke styling.</p>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Services Section -->
+        <section class="section-title">
+            <h2>Our Services & Experts</h2>
+            <p>Every element of your wedding handled by specialized hands</p>
+        </section>
+
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>Full Wedding Coordination</h3>
+                <p>Complete management from venue scouting to budget tracking and timeline execution on the big day.</p>
+                <div class="assigned-expert">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=100" alt="Sarah">
+                    <span>Managed by <strong>Sarah Jenkins</strong></span>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-card">
+                <div class="service-icon">📸</div>
+                <h3>Photography & Videography</h3>
+                <p>Full-day coverage, engagement shoots, and cinematic highlight reels utilizing state-of-the-art editing.</p>
+                <div class="assigned-expert">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=100" alt="David">
+                    <span>Managed by <strong>David Chen</strong></span>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card">
+                <div class="service-icon">💐</div>
+                <h3>Floral & Spatial Design</h3>
+                <p>Custom centerpieces, bridal bouquets, dramatic altar backdrops, and ambient lighting conceptualization.</p>
+                <div class="assigned-expert">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=100" alt="Elena">
+                    <span>Managed by <strong>Elena Rostova</strong></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+   <footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-box">
+
+            <h2>The Wedding Hub</h2>
+
+            <p>
+                Creating magical wedding experiences with luxury decorations and unforgettable memories.
+            </p>
+
+            <div class="social-icons">
+
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+                <a href="#"><i class="fab fa-instagram"></i></a>
+
+                <a href="#"><i class="fab fa-twitter"></i></a>
+
+                <a href="#"><i class="fab fa-youtube"></i></a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-box">
+
+            <h3>Quick Links</h3>
+
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Gallery</a></li>
+            </ul>
+
+        </div>
+
+        <div class="footer-box">
+
+            <h3>Contact</h3>
+
+            <p>📍 Chittoor, Andhra Pradesh</p>
+
+            <p>📞 +91 98765 43210</p>
+
+            <p>✉ info@theweddinghub.com</p>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 The Wedding Hub | All Rights Reserved</p>
+    </div>
+
+</footer>
+
+</body>
+</html>
+

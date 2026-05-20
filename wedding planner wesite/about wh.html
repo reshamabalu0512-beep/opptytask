@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Wedding Hub</title>
+
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+/* =========================
+   GOOGLE FONT
+========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
+    background:linear-gradient(135deg,#fff0f5,#ffe4ec,#ffffff);
+    color:#333;
+    position:relative;
+    line-height:1.7;
+}
+
+/* =========================
+   FLOATING BACKGROUND
+========================= */
+
+body::before{
+    content:'';
+    position:fixed;
+    width:320px;
+    height:320px;
+    background:rgba(255,79,129,0.10);
+    border-radius:50%;
+    top:10%;
+    left:-120px;
+    z-index:-1;
+    animation:floatCircle 10s infinite alternate;
+}
+
+body::after{
+    content:'';
+    position:fixed;
+    width:260px;
+    height:260px;
+    background:rgba(255,182,193,0.15);
+    border-radius:50%;
+    bottom:0;
+    right:-80px;
+    z-index:-1;
+    animation:floatCircle2 12s infinite alternate;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:15px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:linear-gradient(
+    135deg,
+    rgba(255,79,129,0.95),
+    rgba(255,117,140,0.95),
+    rgba(255,182,193,0.92)
+    );
+
+    backdrop-filter:blur(10px);
+    z-index:1000;
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
+
+    animation:slideDown 1s ease;
+}
+
+/* =========================
+   LOGO SECTION
+========================= */
+
+.logo-box{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.rings{
+    position:relative;
+    width:85px;
+    height:60px;
+}
+
+.ring{
+    position:absolute;
+    width:50px;
+    height:50px;
+    border:5px solid gold;
+    border-radius:50%;
+    animation:rotateRing 5s linear infinite;
+}
+
+.ring1{
+    left:0;
+    top:5px;
+}
+
+.ring2{
+    right:0;
+    top:5px;
+}
+
+.diamond{
+    position:absolute;
+    top:-10px;
+    left:16px;
+    width:14px;
+    height:14px;
+    background:#fff;
+    border:3px solid #ff4f81;
+    transform:rotate(45deg);
+    animation:sparkle 1.5s infinite;
+}
+
+.logo-text h1{
+    font-size:38px;
+    color:#fff;
+    font-family:'Great Vibes',cursive;
+    text-shadow:0 0 10px rgba(255,255,255,0.5);
+}
+
+.logo-text p{
+    font-size:13px;
+    color:#fff;
+    letter-spacing:2px;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+nav{
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#fff;
+    font-weight:600;
+    padding:10px 18px;
+    border-radius:30px;
+    transition:0.5s;
+}
+
+nav a:hover{
+    background:#fff;
+    color:#ff4f81;
+    transform:translateY(-5px);
+}
+
+.hero{
+    position:relative;
+    height:100vh;
+    display:flex;
+    background:
+      linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+      url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    overflow:hidden;
+}
+
+.hero video{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    animation:videoZoom 15s infinite alternate;
+}
+
+.overlay{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    color:#fff;
+    padding:20px;
+}
+
+.hero-content h1{
+    font-size:80px;
+    margin-bottom:20px;
+    animation:zoomText 2s ease;
+}
+
+.hero-content p{
+    font-size:22px;
+    margin-bottom:30px;
+    animation:fadeUp 2s ease;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.btn{
+    display:inline-block;
+    padding:14px 35px;
+    background:gold;
+    color:#000;
+    text-decoration:none;
+    border-radius:40px;
+    font-weight:600;
+    transition:0.5s;
+    position:relative;
+    overflow:hidden;
+    animation:bounceBtn 2s infinite;
+}
+
+.btn:hover{
+    background:#fff;
+    transform:translateY(-5px) scale(1.05);
+}
+
+.btn::before{
+    content:'';
+    position:absolute;
+    width:0%;
+    height:100%;
+    top:0;
+    left:0;
+    background:rgba(255,255,255,0.4);
+    transition:0.6s;
+}
+
+.btn:hover::before{
+    width:100%;
+}
+
+/* =========================
+   ABOUT SECTION
+========================= */
+
+.about{
+    padding:120px 8%;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:60px;
+    align-items:center;
+}
+
+.about-image{
+    position:relative;
+    overflow:hidden;
+    border-radius:25px;
+    animation:float 5s ease-in-out infinite;
+}
+
+.about-image img{
+    width:100%;
+    display:block;
+    border-radius:25px;
+    transition:1s;
+}
+
+.about-image:hover img{
+    transform:scale(1.1) rotate(3deg);
+}
+
+.about-content h2{
+    font-size:52px;
+    margin-bottom:20px;
+    color:#222;
+}
+
+.about-content p{
+    font-size:17px;
+    color:#555;
+    margin-bottom:18px;
+}
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h2{
+    font-size:50px;
+    color:#222;
+}
+
+/* =========================
+   HIGHLIGHTS
+========================= */
+
+.highlights{
+    padding:100px 8%;
+    background:#fff7f8;
+}
+
+.highlight-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.highlight-box{
+    background:#fff;
+    padding:40px 25px;
+    border-radius:20px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    transition:0.7s;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.highlight-box::before{
+    content:'';
+    position:absolute;
+    width:100%;
+    height:0;
+    left:0;
+    bottom:0;
+    background:linear-gradient(to right,#ff758c,#ff7eb3);
+    z-index:-1;
+    transition:0.5s;
+}
+
+.highlight-box:hover::before{
+    height:100%;
+}
+
+.highlight-box:hover{
+    color:#fff;
+    transform:translateY(-15px) scale(1.03);
+}
+
+.highlight-box i{
+    font-size:50px;
+    margin-bottom:20px;
+    transition:0.7s;
+}
+
+.highlight-box:hover i{
+    transform:rotateY(360deg) scale(1.2);
+}
+
+/* =========================
+   SERVICES
+========================= */
+
+.services{
+    padding:100px 8%;
+    background:#fff;
+}
+
+.services-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.service-box{
+    background:#fff7f8;
+    padding:35px 25px;
+    border-radius:20px;
+    text-align:center;
+    transition:0.7s;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.service-box:hover{
+    transform:translateY(-12px) rotate(2deg);
+    box-shadow:0 20px 40px rgba(255,79,129,0.3);
+}
+
+.service-box i{
+    font-size:50px;
+    margin-bottom:20px;
+    color:#ff4f81;
+    animation:floatIcon 3s infinite;
+}
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery{
+    padding:100px 8%;
+    background:#fff7f8;
+}
+
+.gallery-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.gallery-box{
+    overflow:hidden;
+    border-radius:25px;
+    position:relative;
+}
+
+.gallery-box img{
+    width:100%;
+    height:350px;
+    object-fit:cover;
+    transition:1s;
+}
+
+.gallery-box:hover img{
+    transform:scale(1.15) rotate(3deg);
+    filter:brightness(0.7);
+}
+
+/* =========================
+   VIDEO SECTION
+========================= */
+
+.video-section{
+    padding:100px 8%;
+    text-align:center;
+}
+
+.video-box{
+    overflow:hidden;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    transition:0.7s;
+}
+
+.video-box:hover{
+    transform:scale(1.02);
+}
+
+.video-box video{
+    width:100%;
+    display:block;
+}
+
+/* =========================
+   TEAM
+========================= */
+
+.team{
+    padding:100px 8%;
+    background:#fff7f8;
+}
+
+.team-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.team-box{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    text-align:center;
+    transition:0.6s;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.team-box:hover{
+    transform:translateY(-10px);
+}
+
+.team-box img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    transition:1s;
+}
+
+.team-box:hover img{
+    transform:scale(1.1);
+}
+
+.team-content{
+    padding:25px;
+}
+
+/* =========================
+   TESTIMONIALS
+========================= */
+
+.testimonials{
+    padding:100px 8%;
+    background:#fff;
+}
+
+.testimonial-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+.testimonial-box{
+    background:#fff7f8;
+    padding:35px;
+    border-radius:20px;
+    transition:0.6s;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.testimonial-box:hover{
+    transform:translateY(-10px);
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact{
+    padding:100px 8%;
+    background:#fff7f8;
+}
+
+.contact-form{
+    max-width:700px;
+    margin:auto;
+}
+
+.contact-form input,
+.contact-form textarea{
+    width:100%;
+    padding:15px;
+    margin-bottom:20px;
+    border:none;
+    border-radius:12px;
+    outline:none;
+    transition:0.5s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+    box-shadow:0 0 15px rgba(255,79,129,0.3);
+    transform:scale(1.02);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    background:linear-gradient(135deg,#111,#1f1f1f,#2b2b2b);
+    color:#fff;
+    padding-top:80px;
+}
+
+.footer-container{
+    width:90%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:40px;
+    padding-bottom:50px;
+}
+
+.footer-box h2{
+    font-size:38px;
+    margin-bottom:20px;
+    color:#ff4f81;
+    font-family:'Great Vibes',cursive;
+}
+
+.footer-box h3{
+    margin-bottom:20px;
+    color:#ffb6c1;
+}
+
+.footer-box p,
+.footer-box ul li{
+    margin-bottom:15px;
+    color:#ddd;
+}
+
+.footer-box ul{
+    list-style:none;
+}
+
+.footer-box ul li a{
+    text-decoration:none;
+    color:#ddd;
+    transition:0.4s;
+}
+
+.footer-box ul li a:hover{
+    color:#ff4f81;
+    padding-left:8px;
+}
+
+/* SOCIAL ICONS */
+
+.social-icons{
+    margin-top:20px;
+}
+
+.social-icons a{
+    width:45px;
+    height:45px;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    background:#333;
+    color:#fff;
+    text-decoration:none;
+    margin-right:10px;
+    transition:0.7s;
+}
+
+.social-icons a:hover{
+    background:#ff4f81;
+    transform:translateY(-8px) rotate(360deg);
+}
+
+/* FOOTER BOTTOM */
+
+.footer-bottom{
+    background:#0f0f0f;
+    text-align:center;
+    padding:20px;
+    margin-top:30px;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes rotateRing{
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes sparkle{
+    50%{
+        transform:rotate(45deg) scale(1.3);
+        opacity:0.7;
+    }
+}
+
+@keyframes slideDown{
+    from{
+        transform:translateY(-100%);
+    }
+
+    to{
+        transform:translateY(0);
+    }
+}
+
+@keyframes zoomText{
+    from{
+        opacity:0;
+        transform:scale(0.5);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes bounceBtn{
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+@keyframes float{
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+@keyframes floatIcon{
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+@keyframes floatCircle{
+    100%{
+        transform:translateY(50px);
+    }
+}
+
+@keyframes floatCircle2{
+    100%{
+        transform:translateX(-50px);
+    }
+}
+
+@keyframes videoZoom{
+    100%{
+        transform:scale(1.1);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:992px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
+        padding:15px;
+    }
+
+    nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero-content h1{
+        font-size:60px;
+    }
+}
+
+@media(max-width:768px){
+
+    .hero-content h1{
+        font-size:42px;
+    }
+
+    .hero-content p{
+        font-size:16px;
+    }
+
+    .section-title h2,
+    .about-content h2{
+        font-size:35px;
+    }
+
+    .logo-box{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    nav ul{
+        gap:10px;
+    }
+}
+
+@media(max-width:480px){
+
+    .hero-content h1{
+        font-size:32px;
+    }
+
+    .btn{
+        padding:12px 25px;
+        font-size:14px;
+    }
+
+    nav ul{
+        flex-direction:column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+        <div class="logo-box">
+            <div class="rings">
+                <div class="ring ring1"><div class="diamond"></div></div>
+                <div class="ring ring2"></div>
+            </div>
+            <div class="logo-text">
+                <h1>The Wedding Hub</h1>
+                <p>Dream Weddings Planner</p>
+            </div>
+        </div>
+    <nav>
+       <div class="nav-links-container">
+           <a href="about wh.html">About</a>
+           <a href="services.html">Services</a>
+           <a href="gallery.html">Gallery</a>
+           <a href="team.html">Team</a>
+           <a href="contact.html">Contact</a>
+            
+
+        </div>
+    </nav>
+
+</header>
+
+<!-- HERO SECTION -->
+
+<section class="hero">
+
+    <video autoplay muted loop playsinline>
+        <source src="{&quot;embedType&quot;:&quot;IFrame&quot;,&quot;allowEmbed&quot;:true,&quot;allowHttpsEmbed&quot;:true,&quot;allowMobileEmbed&quot;:true,&quot;embedHtml&quot;:&quot;<iframe id=\&quot;_ytplayer1610\&quot; allow=\&quot;autoplay\&quot; width=\&quot;1280\&quot; height=\&quot;720\&quot; src=\&quot;https://www.youtube.com/embed/6T17MtuJrT8?autoplay=1&amp;enablejsapi=1&amp;origin=https://www.bing.com&amp;rel=0&amp;loop=1&amp;playlist=6T17MtuJrT8\&quot; frameborder=\&quot;0\&quot; allowfullscreen=\&quot;\&quot;></iframe>&quot;}" type="video/mp4">
+    </video>
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+        <h1>Dream Weddings</h1>
+
+        <p>
+            Creating Elegant Weddings Filled With Love, Luxury & Beautiful Memories
+        </p>
+
+        <a href="#" class="btn">Explore More</a>
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="about">
+
+    <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200">
+    </div>
+
+    <div class="about-content">
+
+        <h2>About The Wedding Hub</h2>
+
+        <p>
+            The Wedding Hub is a professional wedding planning company creating unforgettable celebrations with elegance and creativity.
+        </p>
+
+        <p>
+            We specialize in luxury weddings, destination events, bridal makeup, photography, catering and complete wedding coordination.
+        </p>
+
+        <p>
+            Our mission is to transform your dream wedding into magical memories that last forever.
+        </p>
+
+        <a href="#" class="btn">Read More</a>
+
+    </div>
+
+</section>
+
+<!-- HIGHLIGHTS -->
+
+<section class="highlights">
+
+    <div class="section-title">
+        <h2>Why Choose Us</h2>
+    </div>
+
+    <div class="highlight-container">
+
+        <div class="highlight-box">
+            <i class="fa-solid fa-heart"></i>
+            <h3>Creative Designs</h3>
+            <p>Luxury wedding themes and elegant decorations.</p>
+        </div>
+
+        <div class="highlight-box">
+            <i class="fa-solid fa-camera"></i>
+            <h3>Photography</h3>
+            <p>Cinematic photography and unforgettable memories.</p>
+        </div>
+
+        <div class="highlight-box">
+            <i class="fa-solid fa-crown"></i>
+            <h3>Royal Events</h3>
+            <p>Premium wedding planning and grand celebrations.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- VIDEO SECTION -->
+
+<section class="video-section">
+
+    <h2>Wedding Memories</h2>
+
+    <div class="video-box">
+
+        <video controls>
+            <source src="reception-video.mp4" type="video/mp4">
+        </video>
+
+    </div>
+
+</section>
+
+<!-- TEAM SECTION -->
+
+<section class="team">
+
+    <div class="section-title">
+        <h2>Our Team</h2>
+    </div>
+
+    <div class="team-container">
+
+        <div class="team-box">
+
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200">
+
+            <div class="team-content">
+                <h3>Reshama</h3>
+                <p>Wedding Planner</p>
+            </div>
+
+        </div>
+
+        <div class="team-box">
+
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200">
+
+            <div class="team-content">
+                <h3>Rahul</h3>
+                <p>Creative Designer</p>
+            </div>
+
+        </div>
+
+        <div class="team-box">
+
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1200">
+
+            <div class="team-content">
+                <h3>Sneha</h3>
+                <p>Event Coordinator</p>
+            </div>
+
+        </div>
+
+        <!-- =========================
+     SERVICES SECTION
+========================= -->
+
+<section class="services">
+
+    <div class="section-title">
+        <h2>Our Wedding Services</h2>
+        <p>Luxury Wedding Planning Services For Your Dream Celebration</p>
+    </div>
+
+    <div class="services-container">
+
+        <div class="service-box">
+            <i class="fa-solid fa-ring"></i>
+            <h3>Wedding Planning</h3>
+            <p>Complete wedding arrangements with elegant themes and decorations.</p>
+        </div>
+
+        <div class="service-box">
+            <i class="fa-solid fa-camera-retro"></i>
+            <h3>Photography</h3>
+            <p>Cinematic wedding photography and memorable albums.</p>
+        </div>
+
+        <div class="service-box">
+            <i class="fa-solid fa-cake-candles"></i>
+            <h3>Reception Events</h3>
+            <p>Grand receptions with entertainment and luxury arrangements.</p>
+        </div>
+
+        <div class="service-box">
+            <i class="fa-solid fa-utensils"></i>
+            <h3>Catering</h3>
+            <p>Delicious traditional and modern cuisines for your guests.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     GALLERY SECTION
+========================= -->
+
+<section class="gallery">
+
+    <div class="section-title">
+        <h2>Wedding Gallery</h2>
+        <p>Beautiful Moments Captured Forever</p>
+    </div>
+
+    <div class="gallery-container">
+
+        <div class="gallery-box">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200">
+        </div>
+
+        <div class="gallery-box">
+            <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200">
+        </div>
+
+        <div class="gallery-box">
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1200">
+        </div>
+
+        <div class="gallery-box">
+            <img src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?q=80&w=1200">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TESTIMONIAL SECTION
+========================= -->
+
+<section class="testimonials">
+
+    <div class="section-title">
+        <h2>Client Testimonials</h2>
+        <p>What Our Happy Couples Say</p>
+    </div>
+
+    <div class="testimonial-container">
+
+        <div class="testimonial-box">
+            <i class="fa-solid fa-quote-left"></i>
+
+            <p>
+                The Wedding Hub made our wedding magical and stress-free.
+                Everything was perfectly organized.
+            </p>
+
+            <h3>Priya & Karthik</h3>
+        </div>
+
+        <div class="testimonial-box">
+            <i class="fa-solid fa-quote-left"></i>
+
+            <p>
+                Beautiful decorations, amazing photography and professional team.
+                Highly recommended.
+            </p>
+
+            <h3>Sneha & Rahul</h3>
+        </div>
+
+        <div class="testimonial-box">
+            <i class="fa-solid fa-quote-left"></i>
+
+            <p>
+                We loved every moment of our wedding.
+                Thank you for creating unforgettable memories.
+            </p>
+
+            <h3>Kavya & Arjun</h3>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT SECTION
+========================= -->
+
+<section class="contact">
+
+    <div class="section-title">
+        <h2>Contact Us</h2>
+        <p>Let's Plan Your Dream Wedding</p>
+    </div>
+
+    <div class="contact-container">
+
+        <div class="contact-info">
+
+            <h3>Get In Touch</h3>
+
+            <p>
+                <i class="fa-solid fa-location-dot"></i>
+                Chittoor, Andhra Pradesh
+            </p>
+
+            <p>
+                <i class="fa-solid fa-phone"></i>
+                +91 98765 43210
+            </p>
+
+            <p>
+                <i class="fa-solid fa-envelope"></i>
+                info@theweddinghub.com
+            </p>
+
+        </div>
+
+        <form class="contact-form">
+
+            <input type="text" placeholder="Your Name">
+
+            <input type="email" placeholder="Your Email">
+
+            <textarea rows="6" placeholder="Write Your Message"></textarea>
+
+            <button type="submit" class="btn">Send Message</button>
+
+        </form>
+
+    </div>
+
+</section>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-box">
+
+            <h2>The Wedding Hub</h2>
+
+            <p>
+                Creating magical wedding experiences with luxury decorations and unforgettable memories.
+            </p>
+
+            <div class="social-icons">
+
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+                <a href="#"><i class="fab fa-instagram"></i></a>
+
+                <a href="#"><i class="fab fa-twitter"></i></a>
+
+                <a href="#"><i class="fab fa-youtube"></i></a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-box">
+
+            <h3>Quick Links</h3>
+
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Gallery</a></li>
+            </ul>
+
+        </div>
+
+        <div class="footer-box">
+
+            <h3>Contact</h3>
+
+            <p>📍 Chittoor, Andhra Pradesh</p>
+
+            <p>📞 +91 98765 43210</p>
+
+            <p>✉ info@theweddinghub.com</p>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 The Wedding Hub | All Rights Reserved</p>
+    </div>
+
+</footer>
+
+</body>
+</html>
