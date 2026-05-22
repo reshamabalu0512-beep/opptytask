@@ -12,9 +12,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
 <style>
-/* ==========================================================================
-   GLOBAL SETTINGS & UTILITIES
-   ========================================================================== */
+
 :root {
     --primary: #ff4f81;
     --primary-gradient: linear-gradient(135deg, #ff4f81, #ff758c, #ffb6c1);
@@ -38,7 +36,7 @@ body {
     background: linear-gradient(135deg, #fff0f5, #ffe4ec, #ffffff);
     color: #333;
     line-height: 1.7;
-    padding-top: 100px; /* Offset for fixed header */
+    padding-top: 100px; 
 }
 
 .container {
@@ -47,7 +45,7 @@ body {
     padding: 60px 20px;
 }
 
-/* Titles Components */
+
 .section-title-block {
     text-align: center;
     margin-bottom: 50px;
@@ -68,7 +66,7 @@ body {
     font-weight: 600;
 }
 
-/* Luxury Interactive Buttons */
+
 .action-btn {
     width: 100%;
     padding: 15px;
@@ -89,9 +87,7 @@ body {
     box-shadow: 0 15px 25px rgba(255, 79, 129, 0.4);
 }
 
-/* ==========================================================================
-   HEADER COMPONENT
-   ========================================================================== */
+
 header {
     position: fixed;
     top: 0;
@@ -129,8 +125,12 @@ header {
     animation: rotateRing 5s linear infinite;
 }
 
-.ring1 { left: 0; top: 5px; }
-.ring2 { right: 0; top: 5px; }
+.ring1 { 
+    left: 0; top: 5px;
+ }
+.ring2 { 
+    right: 0; top: 5px; 
+}
 
 .diamond {
     position: absolute;
@@ -177,9 +177,7 @@ nav a:hover {
     transform: translateY(-5px);
 }
 
-/* ==========================================================================
-   CENTRAL BOOKING & CONTACT ENGINE
-   ========================================================================== */
+
 .contact-interactive-wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -271,22 +269,18 @@ nav a:hover {
     font-size: 0.95rem;
 }
 
-/* ==========================================================================
-   LIVE INTERACTIVE MAP CONTAINER
-   ========================================================================== */
+
 #map-container {
     width: 100%;
     height: 450px;
     border-radius: 30px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-    border: 8px solid var(--glass);
+    border: 8px solid var(--glass); 
     margin-bottom: 80px;
 }
 
-/* ==========================================================================
-   PAST TRIUMPHS & HISTORICAL METRICS (PREVIOUS BOOKINGS)
-   ========================================================================== */
+
 .history-metrics-shelf {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -326,7 +320,7 @@ nav a:hover {
     font-weight: 500;
 }
 
-/* Archive Showcase Grid */
+
 .past-triumphs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -419,9 +413,7 @@ nav a:hover {
     margin-right: 5px;
 }
 
-/* ==========================================================================
-   FOOTER COMPONENT
-   ========================================================================== */
+
 .footer {
     background: linear-gradient(135deg, #111, #1f1f1f, #2b2b2b);
     color: #fff;
@@ -495,17 +487,64 @@ nav a:hover {
 }
 
 
-@keyframes rotateRing { 100% { transform: rotate(360deg); } }
-@keyframes sparkle { 50% { transform: rotate(45deg) scale(1.3); opacity: 0.7; } }
-@keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
-
-
-@media(max-width: 768px) {
-    header { flex-direction: column; gap: 10px; padding: 15px 4%; }
-    body { padding-top: 160px; }
-    .contact-form-portal { padding: 30px 20px; }
-    .form-group-row { grid-template-columns: 1fr; gap: 0; }
+@keyframes rotateRing { 
+    100% { transform: rotate(360deg);
+     }
+ }
+@keyframes sparkle { 
+    50% { transform: rotate(45deg) scale(1.3); opacity: 0.7; }
+ }
+@keyframes slideDown { 
+    from { transform: translateY(-100%); } to { transform: translateY(0); } 
 }
+
+
+@media(max-width: 768px)
+ {
+header { 
+    flex-direction: column; gap: 10px; padding: 15px 4%; 
+}
+    body { 
+        padding-top: 160px; 
+    }
+    .contact-form-portal { 
+        padding: 30px 20px; 
+    }
+    .form-group-row {
+         grid-template-columns: 1fr; gap: 0; 
+        }
+}
+@media(max-width: 480px) 
+{
+    header {
+         flex-direction: column; gap: 10px; padding: 10px 4%; 
+        }
+    body {
+         padding-top: 160px; 
+        }
+    .contact-form-portal {
+         padding: 20px 15px;
+         }
+    .form-group-row { 
+        grid-template-columns: 1fr; gap: 0;
+     }
+}
+@media(max-width: 360px) 
+{
+    header {
+         flex-direction: column; gap: 10px; padding: 15px 4%; 
+        }
+    body { 
+        padding-top: 160px;
+     }
+    .contact-form-portal { 
+        padding: 15px 15px; 
+    }
+    .form-group-row { 
+        grid-template-columns: 1fr; gap: 0; 
+    }
+}
+
 </style>
 </head>
 <body>
@@ -569,7 +608,7 @@ nav a:hover {
                         <i class="fa-solid fa-location-dot"></i>
                         <div>
                             <h4>Corporate Headquarters</h4>
-                            <p>Chittoor, Andhra Pradesh, India</p>
+                            <p>vizaingaram, Andhra Pradesh, India</p>
                         </div>
                     </div>
                     <div class="info-row">
@@ -638,7 +677,7 @@ nav a:hover {
 
             <div class="archive-card">
                 <div class="archive-img-frame">
-                    <img src="https://images.unsplash.com/photo-1544078751-58fed2b32c83?q=80&w=500&auto=format&fit=crop" alt="Modern Minimalist Setup Archive">
+                    <img src="https://ianchinphotography.com/wp-content/uploads/2022/02/WD20181109-ChicagoBotanicGarden-01-1.jpeg" alt="Modern Minimalist Setup Archive">
                     <span class="archive-status-tag">Completed</span>
                 </div>
                 <div class="archive-body">
@@ -678,7 +717,8 @@ nav a:hover {
             </div>
             <div class="footer-box">
                 <h3>Contact</h3>
-                <p>📍 Chittoor, Andhra Pradesh</p>
+                <p><i class="fas fa-location-dot"></i> Reshama Sadhanala, Andhra Pradesh</p>
+                <p>📍 Vizaingaram, Andhra Pradesh</p>
                 <p>📞 +91 98765 43210</p>
                 <p>✉ info@theweddinghub.com</p>
             </div>

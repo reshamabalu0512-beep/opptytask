@@ -5,17 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Wedding Hub | Immersive Cinema & Luxury Gallery</title>
 
-<!-- GOOGLE FONTS -->
+
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- FONT AWESOME ICONS -->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
-/* ==========================================================================
-   1. SYSTEM VARIABLES & BASICS
-   ========================================================================== */
-* {
+*{
+
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -57,9 +56,7 @@ header{
     animation:slideDown 1s ease;
 }
 
-/* =========================
-   LOGO SECTION
-========================= */
+
 
 .logo-box{
     display:flex;
@@ -117,9 +114,7 @@ header{
     letter-spacing:2px;
 }
 
-/* =========================
-   NAVIGATION
-========================= */
+
 
 nav{
     display:flex;
@@ -141,7 +136,7 @@ nav a:hover{
     transform:translateY(-5px);
 }
 
-/* Custom Scrollbar */
+
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -153,9 +148,7 @@ nav a:hover{
     border-radius: 4px;
 }
 
-/* ==========================================================================
-   2. HOME VIEWPORT PLATFORM
-   ========================================================================== */
+
 .home-viewport {
     position: relative;
     width: 100%;
@@ -293,9 +286,7 @@ nav a:hover{
     animation: pulseBounce 2s infinite;
 }
 
-/* ==========================================================================
-   3. PREMIUM INTERACTIVE GALLERY SECTION
-   ========================================================================== */
+
 .gallery-showcase-section {
     padding: 100px 5% 60px;
     background: #090708;
@@ -323,7 +314,7 @@ nav a:hover{
     color: #b3b3b3;
 }
 
-/* Advanced Filter Row */
+
 .filter-dock {
     display: flex;
     justify-content: center;
@@ -357,7 +348,7 @@ nav a:hover{
     transform: translateY(-2px);
 }
 
-/* Structural Photo Grid Matrix */
+
 .gallery-grid-matrix {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -385,7 +376,7 @@ nav a:hover{
 
 }
 
-/* Smooth filtering structural states */
+
 .gallery-card-item.hidden {
     transform: scale(0.8) translate3d(0, 20px, 0);
     opacity: 0;
@@ -415,7 +406,7 @@ nav a:hover{
     justify-content: flex-end;
     padding: 30px;
     opacity: 0.85;
-    transform:rotatey(180deg): opacity 0.4s ease, background 0.4s ease;
+    transform:rotate y(180deg): opacity 0.4s ease, background 0.4s ease;
 }
 
 .card-meta-tag {
@@ -436,7 +427,7 @@ nav a:hover{
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Micro-Hover Effects */
+
 .gallery-card-item:hover {
     box-shadow: 0 20px 45px rgba(212, 175, 55, 0.15);
 }
@@ -454,9 +445,7 @@ nav a:hover{
     transform: translateY(0);
 }
 
-/* ==========================================================================
-   4. SYSTEM FOOTER
-   ========================================================================== */
+
 .footer{
     background:linear-gradient(135deg,#111,#1f1f1f,#2b2b2b);
     color:#fff;
@@ -505,7 +494,7 @@ nav a:hover{
     padding-left:8px;
 }
 
-/* SOCIAL ICONS */
+
 
 .social-icons{
     margin-top:20px;
@@ -530,7 +519,7 @@ nav a:hover{
     transform:translateY(-8px) rotate(360deg);
 }
 
-/* FOOTER BOTTOM */
+
 
 .footer-bottom{
     background:#0f0f0f;
@@ -540,9 +529,7 @@ nav a:hover{
 }
 
 
-/* ==========================================================================
-   5. KEYFRAME ENGINE
-   ========================================================================== */
+
 @keyframes spinClockwise { 100% { transform: rotate(360deg); } }
 @keyframes spinCounter { 100% { transform: rotate(-360deg); } }
 @keyframes spatialDrift {
@@ -566,9 +553,7 @@ nav a:hover{
     50% { transform: translateY(8px); opacity: 1; }
 }
 
-/* ==========================================================================
-   6. RESPONSIVE MEDIA ADAPTATIONS
-   ========================================================================== */
+
 @media(max-width: 992px) {
     .frosted-glass-card h2 { font-size: 58px; }
     .gallery-headline h3 { font-size: 50px; }
@@ -590,7 +575,7 @@ nav a:hover{
     <div class="ambient-fog fog-top"></div>
     <div class="ambient-fog fog-bottom"></div>
 
-    <!-- BACKGROUND VAULT -->
+   
     <div class="cinema-background-vault">
         <video autoplay muted loop playsinline class="cinema-media-layer">
             <source src="https://assets.mixkit.co/videos/preview/mixkit-bride-and-groom-walking-in-a-field-of-flowers-42774-large.mp4" type="video/mp4">
@@ -598,7 +583,7 @@ nav a:hover{
         <div class="vignette-curtain"></div>
     </div>
 
-    <!-- HEADER NAVIGATION -->
+
     <header>
         <div class="logo-box">
             <div class="rings">
@@ -624,7 +609,6 @@ nav a:hover{
     </nav>
   </header>
 
-    <!-- HERO TEXT EPICENTER -->
     <main class="hero-epicenter-container">
         <div class="frosted-glass-card">
             <p class="tag-line">Event Architecture & High Design</p>
@@ -643,16 +627,14 @@ nav a:hover{
     </div>
 </div>
 
-<!-- ==========================================================================
-     INTERACTIVE GALLERY SECTION
-     ========================================================================== -->
+
 <section class="gallery-showcase-section" id="gallery">
     <div class="gallery-headline">
         <h3>Our Celebration Portfolios</h3>
         <p>A curated collection of design, emotion, and exquisite luxury</p>
     </div>
 
-    <!-- Dynamic Filter Row -->
+    
     <div class="filter-dock">
         <button class="filter-btn active" onclick="filterGallery('all')">All Portfolios</button>
         <button class="filter-btn" onclick="filterGallery('decorations')">Event Decorations</button>
@@ -664,12 +646,14 @@ nav a:hover{
         <button class="filter-btn" onclick="filterGallery('post-wedding')">Post-Wedding</button>
         <button class="filter-btn" onclick="filterGallery('engagement')">Engagement</button>
         <button class="filter-btn" onclick="filterGallery('birthday')">Birthdays</button>
+        <button class="filter-btn" onclick="filterGallery('cardle cermony ')">cardle cermony</button>
+        <button class="filter-btn" onclick="filterGallery('half saree')">half saree</button>
         
 
-    <!-- Structural Photo Grid Matrix -->
+    
     <div class="gallery-grid-matrix">
         
-        <!-- Event Decorations -->
+        
         <div class="gallery-card-item" data-category="decorations">
             <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=600" alt="Decorations">
             <div class="card-curtain-overlay">
@@ -678,7 +662,6 @@ nav a:hover{
             </div>
         </div>
 
-        <!-- Cocktail Party -->
         <div class="gallery-card-item" data-category="cocktail">
             <img src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&q=80&w=600" alt="Cocktail Party">
             <div class="card-curtain-overlay">
@@ -687,7 +670,7 @@ nav a:hover{
             </div>
         </div>
 
-        <!-- Sangeet -->
+        
         <div class="gallery-card-item" data-category="sangeet">
             <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=600" alt="Sangeet">
             <div class="card-curtain-overlay">
@@ -696,7 +679,6 @@ nav a:hover{
             </div>
         </div>
 
-        <!-- Gadi Photos -->
         <div class="gallery-card-item" data-category="gadi">
             <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=600" alt="Gadi Photos">
             <div class="card-curtain-overlay">
@@ -705,7 +687,7 @@ nav a:hover{
             </div>
         </div>
 
-        <!-- Outside Photo Shoots -->
+        
         <div class="gallery-card-item" data-category="outside">
             <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&q=80&w=600" alt="Outside Shoots">
             <div class="card-curtain-overlay">
@@ -714,7 +696,6 @@ nav a:hover{
             </div>
         </div>
 
-        <!-- Pre Wedding -->
         <div class="gallery-card-item" data-category="pre-wedding">
             <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=600" alt="Pre Wedding">
             <div class="card-curtain-overlay">
@@ -723,7 +704,7 @@ nav a:hover{
             </div>
         </div>
 
-        <!-- Post Wedding -->
+      
         <div class="gallery-card-item" data-category="post-wedding">
             <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=600" alt="Post Wedding">
             <div class="card-curtain-overlay">
@@ -732,7 +713,6 @@ nav a:hover{
             </div>
         </div>
 
-        <!-- Engagement -->
         <div class="gallery-card-item" data-category="engagement">
             <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=600" alt="Engagement">
             <div class="card-curtain-overlay">
@@ -741,7 +721,7 @@ nav a:hover{
             </div>
         </div>
 
-        <!-- Birthday Photos -->
+   
         <div class="gallery-card-item" data-category="birthday">
             <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=600" alt="Birthday">
             <div class="card-curtain-overlay">
@@ -750,19 +730,37 @@ nav a:hover{
             </div>
         </div>
 
-        <!-- Sremantaham Photos -->
+        
         <div class="gallery-card-item" data-category="sremantaham">
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600" alt="Sremantaham">
+            <img src="https://www.shutterstock.com/shutterstock/photos/2291584237/display_1500/stock-vector-vector-of-indian-seemantham-ceremony-baby-shower-ceremony-2291584237.jpg" alt="Sremantaham">
             <div class="card-curtain-overlay">
                 <span class="card-meta-tag">Blessings & Beginnings</span>
                 <h4>Sremantaham Celebrations</h4>
             </div>
         </div>
+        <div class="gallery-card-item" data-category="cardle crmony">
+            <img src="	https://i.pinimg.com/originals/63/05/97/630597588a68509a577d8164231a9274.jpg" alt="Sremantaham">
+            <div class="card-curtain-overlay">
+                <span class="card-meta-tag">Blessings & Beginnings</span>
+                <h4>cardle ceremony</h4>
+            </div>
+        </div>
+
+        <div class="gallery-card-item" data-category="half saree">
+            <img src="https://sankerphotography.in/wp-content/uploads/2023/04/half-saree-ceremony-sankerphotography-6-683x1024.jpg" alt="Sremantaham">
+            <div class="card-curtain-overlay">
+                <span class="card-meta-tag">Blessings & Beginnings</span>
+                <h4>half saree</h4>
+            </div>
+        </div>
+
+
+        	
 
     </div>
 </section>
 
-<!-- PLATFORM FOOTER -->
+
 <footer>
     <p>&copy; 2026 The Wedding Hub. Engineered for Luxury Milestones Worldwide.</p>
     <div class="footer-social-dock">
@@ -772,7 +770,6 @@ nav a:hover{
     </div>
 </footer>
 
-<!-- GALLERY FUNCTIONAL CONTROLLER -->
 <script>
 function filterGallery(category) {
     // Update active state class on category buttons
@@ -788,7 +785,6 @@ function filterGallery(category) {
             card.classList.remove('hidden');
         } else {
             card.classList.add('hidden');
-        }
     });
 }
 
@@ -837,8 +833,8 @@ function filterGallery(category) {
         <div class="footer-box">
 
             <h3>Contact</h3>
-
-            <p>📍 Chittoor, Andhra Pradesh</p>
+            <p><i class="fas fa-location-dot"></i> Reshama Sadhanala</p>
+            <p>📍 Vizaingaram  , Andhra Pradesh</p>
 
             <p>📞 +91 98765 43210</p>
 
@@ -859,3 +855,5 @@ function filterGallery(category) {
 
 </body>
 </html>
+
+

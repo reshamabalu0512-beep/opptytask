@@ -6,17 +6,15 @@
 
 <title>The Wedding Hub | Wedding Services</title>
 
-<!-- GOOGLE FONTS -->
+
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- FONT AWESOME -->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
 
-/* =========================
-   GLOBAL CSS
-========================= */
+
 
 *{
     margin:0;
@@ -32,9 +30,7 @@ body{
     color:#333;
 }
 
-/* =========================
-   FLOATING BACKGROUND
-========================= */
+
 
 body::before{
     content:'';
@@ -62,9 +58,7 @@ body::after{
     animation:floatCircle2 10s infinite alternate;
 }
 
-/* =========================
-   HEADER
-========================= */
+
 
 header{
     position:fixed;
@@ -86,7 +80,7 @@ header{
     animation:slideDown 1.2s ease;
 }
 
-/* LOGO */
+
 
 .logo-box{
     display:flex;
@@ -145,7 +139,7 @@ header{
 }
 
 
-/* NAVBAR */
+
 
 nav{
     display:flex;
@@ -167,9 +161,7 @@ nav a:hover{
     transform:translateY(-5px);
 }
 
-/* =========================
-   HERO SECTION
-========================= */
+
 
 .hero{
     height:100vh;
@@ -217,7 +209,7 @@ nav a:hover{
     animation:fadeUp 2s ease;
 }
 
-/* BUTTON */
+
 
 .btn{
     display:inline-block;
@@ -236,9 +228,7 @@ nav a:hover{
     transform:translateY(-8px) scale(1.05);
 }
 
-/* =========================
-   SERVICES SECTION
-========================= */
+
 
 .services-page{
     padding:120px 8%;
@@ -266,7 +256,7 @@ nav a:hover{
     gap:35px;
 }
 
-/* SERVICE BOX */
+
 
 .service-box{
     background:#fff;
@@ -283,7 +273,7 @@ nav a:hover{
     box-shadow:0 20px 40px rgba(255,79,129,0.3);
 }
 
-/* IMAGE */
+
 
 .service-box img{
     width:100%;
@@ -296,7 +286,7 @@ nav a:hover{
     transform:scale(1.12) rotate(2deg);
 }
 
-/* CONTENT */
+
 
 .service-content{
     padding:30px;
@@ -336,9 +326,6 @@ nav a:hover{
     transform:scale(1.05);
 }
 
-/* =========================
-   PROCESS SECTION
-========================= */
 
 .process{
     padding:100px 8%;
@@ -376,9 +363,7 @@ nav a:hover{
     margin-bottom:15px;
 }
 
-/* =========================
-   VIDEO SECTION
-========================= */
+
 
 .video-section{
     padding:100px 8%;
@@ -406,9 +391,7 @@ nav a:hover{
     display:block;
 }
 
-/* =========================
-   FOOTER
-========================= */
+
 
 .footer{
     background:linear-gradient(135deg,#111,#1f1f1f,#2b2b2b);
@@ -461,7 +444,7 @@ nav a:hover{
     padding-left:8px;
 }
 
-/* SOCIAL ICONS */
+
 
 .social-icons{
     margin-top:20px;
@@ -486,7 +469,6 @@ nav a:hover{
     transform:rotate(360deg) scale(1.2);
 }
 
-/* FOOTER BOTTOM */
 
 .footer-bottom{
     text-align:center;
@@ -495,13 +477,13 @@ nav a:hover{
     border-top:1px solid rgba(255,255,255,0.1);
 }
 
-/* =========================
-   ANIMATIONS
-========================= */
 
-@keyframes rotateRing{
-    0%{transform:rotate(0deg);}
-    100%{transform:rotate(360deg);}
+@keyframes rotateRing
+{
+    0%{transform:rotate(0deg);
+    }
+    100%{transform:rotate(360deg);
+    }
 }
 
 @keyframes slideDown{
@@ -536,17 +518,29 @@ nav a:hover{
 }
 
 @keyframes bounceBtn{
-    0%{transform:translateY(0);}
-    50%{transform:translateY(-8px);}
-    100%{transform:translateY(0);}
+    0%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
+    100%{
+        transform:translateY(0);
+    }
 }
 
 @keyframes floatIcon{
-    0%{transform:translateY(0);}
-    50%{transform:translateY(-10px);}
-    100%{transform:translateY(0);}
+    0%{
+        transform:translateY(0);
+     50%{
+        transform:translateY(-10px);
+    }
+    100%{
+        transform:translateY(0);   
+   
+    }
 }
-
+}
 @keyframes rotateIcon{
     0%{transform:rotate(0deg);}
     100%{transform:rotate(360deg);}
@@ -573,9 +567,7 @@ nav a:hover{
     100%{transform:scale(1.1);}
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+
 
 @media(max-width:992px){
 
@@ -665,7 +657,7 @@ nav a:hover{
 
 </header>
 
-<!-- HERO -->
+
 
 <section class="hero">
 
@@ -683,7 +675,6 @@ nav a:hover{
 
 </section>
 
-<!-- SERVICES -->
 
 <section class="services-page">
 
@@ -694,7 +685,7 @@ nav a:hover{
 
 <div class="services-container">
 
-<!-- SERVICE 1 -->
+
 
 <div class="service-box">
 <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200" alt="Wedding Planning">
@@ -707,7 +698,7 @@ nav a:hover{
 </div>
 </div>
 
-<!-- SERVICE 2 -->
+
 
 <div class="service-box">
 <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200" alt="Photography">
@@ -720,7 +711,7 @@ nav a:hover{
 </div>
 </div>
 
-<!-- SERVICE 3 -->
+
 
 <div class="service-box">
 <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200" alt="Reception">
@@ -733,7 +724,7 @@ nav a:hover{
 </div>
 </div>
 
-<!-- SERVICE 4 -->
+
 
 <div class="service-box">
 <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200" alt="Decoration">
@@ -746,7 +737,7 @@ nav a:hover{
 </div>
 </div>
 
-<!-- SERVICE 5 -->
+
 
 <div class="service-box">
 <img src="https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=1200" alt="Catering">
@@ -759,7 +750,7 @@ nav a:hover{
 </div>
 </div>
 
-<!-- SERVICE 6 -->
+
 
 <div class="service-box">
 <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1200" alt="Bridal Makeup">
@@ -776,7 +767,7 @@ nav a:hover{
 
 </section>
 
-<!-- PROCESS -->
+
 
 <section class="process">
 
@@ -814,7 +805,7 @@ nav a:hover{
 
 </section>
 
-<!-- VIDEO SECTION -->
+
 
 <section class="video-section">
 
@@ -828,7 +819,7 @@ nav a:hover{
 
 </section>
 
-<!-- FOOTER -->
+
 
 <footer class="footer">
 
@@ -879,8 +870,8 @@ photography, catering, decoration and unforgettable memories.
 
 <div class="footer-box">
 <h3>Contact Info</h3>
-
-<p><i class="fa-solid fa-location-dot"></i> Chittoor, Andhra Pradesh</p>
+<p><i class="fas fa-location-dot"></i> Reshama Sadhanala, Andhra Pradesh</p>
+<p><i class="fa-solid fa-location-dot"></i> Vizaingaram, Andhra Pradesh</p>
 <p><i class="fa-solid fa-phone"></i> +91 98765 43210</p>
 <p><i class="fa-solid fa-envelope"></i> info@theweddinghub.com</p>
 

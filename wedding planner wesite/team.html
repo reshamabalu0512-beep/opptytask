@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Team & Services | Wedding Hub</title>
-    <!-- Google Fonts for Elegant Typography -->
+ 
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ==========================================================================
-   CSS VARIABLES & BASE RESETS
-   ========================================================================== */
+
 :root {
     --primary-color: #ff4f81;
     --secondary-color: gold;
@@ -34,9 +32,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ==========================================================================
-   FIXED APPLICATION HEADER & LOGO CONFIGURATIONS
-   ========================================================================== */
+
 header {
     position: fixed;
     top: 0;
@@ -110,7 +106,7 @@ header {
     letter-spacing: 2px;
 }
 
-/* NAVIGATION LINKS */
+
 nav{
     display:flex;
     gap:20px;
@@ -130,9 +126,7 @@ nav a:hover{
     color:#ff4f81;
     transform:translateY(-5px);
 }
-/* ==========================================================================
-   PAGE BANNER & GENERAL CONTAINERS
-   ========================================================================== */
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -176,9 +170,7 @@ nav a:hover{
     font-size: 1rem;
 }
 
-/* ==========================================================================
-   TEAM SECTION: SLIDE-UP AND FADE ENTRY
-   ========================================================================== */
+
 .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -195,7 +187,7 @@ nav a:hover{
     animation: teamCardEntry 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-/* Staggered load delays for team members */
+
 .team-grid .team-card:nth-child(1) { animation-delay: 0.2s; }
 .team-grid .team-card:nth-child(2) { animation-delay: 0.4s; }
 .team-grid .team-card:nth-child(3) { animation-delay: 0.6s; }
@@ -255,9 +247,7 @@ nav a:hover{
     opacity: 0.5;
 }
 
-/* ==========================================================================
-   SERVICES SECTION: POP/SCALE IN ENTRY
-   ========================================================================== */
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -277,7 +267,7 @@ nav a:hover{
     animation: serviceCardPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-/* Staggered load delays for service blocks */
+
 .services-grid .service-card:nth-child(1) { animation-delay: 0.8s; }
 .services-grid .service-card:nth-child(2) { animation-delay: 1.0s; }
 .services-grid .service-card:nth-child(3) { animation-delay: 1.2s; }
@@ -327,7 +317,7 @@ nav a:hover{
     font-size: 0.85rem;
 }
 
-/* UNIVERSAL FOOTER STYLE */
+
 .footer{
     background:linear-gradient(135deg,#111,#1f1f1f,#2b2b2b);
     color:#fff;
@@ -376,7 +366,7 @@ nav a:hover{
     padding-left:8px;
 }
 
-/* SOCIAL ICONS */
+
 
 .social-icons{
     margin-top:20px;
@@ -401,7 +391,7 @@ nav a:hover{
     transform:translateY(-8px) rotate(360deg);
 }
 
-/* FOOTER BOTTOM */
+
 
 .footer-bottom{
     background:#0f0f0f;
@@ -410,9 +400,6 @@ nav a:hover{
     margin-top:30px;
 }
 
-/* =========================
-   ANIMATIONS
-========================= */
 
 @keyframes rotateRing{
     100%{
@@ -497,9 +484,7 @@ nav a:hover{
     }
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+
 
 @media(max-width:992px){
 
@@ -584,7 +569,22 @@ nav a:hover{
 }
 
 
+
 @media (max-width: 768px) {
+
+    header {
+         padding: 15px 4%; flex-direction: column; gap: 15px; 
+        }
+    body {
+         padding-top: 180px; }
+    nav ul { width: 100%; justify-content: center; }
+}
+@media (max-width: 1200px) {
+    header { padding: 15px 4%; flex-direction: column; gap: 15px; }
+    body { padding-top: 180px; }
+    nav ul { width: 100%; justify-content: center; }
+}
+@media (max-width: 360px) {
     header { padding: 15px 4%; flex-direction: column; gap: 15px; }
     body { padding-top: 180px; }
     nav ul { width: 100%; justify-content: center; }
@@ -624,44 +624,44 @@ nav a:hover{
 
     <div class="container">
         
-        <!-- Team Section -->
+       
         <section class="section-title">
             <h2>The Wedding Hub Team</h2>
             <p>Dedicated professionals managing every detail of your special day</p>
         </section>
 
         <div class="team-grid">
-            <!-- Member 1 -->
+            
             <div class="team-card">
                 <div class="img-container">
                     <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" alt="Sarah Jenkins">
                 </div>
                 <div class="card-content">
-                    <h3>Sarah Jenkins</h3>
+                    <h3>Sujana </h3>
                     <p class="role">Lead Wedding Planner</p>
                     <p class="bio">With over 8 years of luxury planning experience, Sarah turns chaotic ideas into seamless, breathtaking realities.</p>
                 </div>
             </div>
 
-            <!-- Member 2 -->
+            
             <div class="team-card">
                 <div class="img-container">
                     <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400" alt="David Chen">
                 </div>
                 <div class="card-content">
-                    <h3>David Chen</h3>
+                    <h3>Uppendra</h3>
                     <p class="role">Chief Photographer & Visual Director</p>
                     <p class="bio">David captures emotions rather than just poses, ensuring your memories look timeless and cinematic.</p>
                 </div>
             </div>
 
-            <!-- Member 3 -->
+           
             <div class="team-card">
                 <div class="img-container">
                     <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400" alt="Elena Rostova">
                 </div>
                 <div class="card-content">
-                    <h3>Elena Rostova</h3>
+                    <h3>Hema</h3>
                     <p class="role">Floral & Decor Designer</p>
                     <p class="bio">Elena transforms blank spaces into enchanted environments, prioritizing seasonal blooms and bespoke styling.</p>
                 </div>
@@ -670,50 +670,49 @@ nav a:hover{
 
         <hr class="divider">
 
-        <!-- Services Section -->
+       
         <section class="section-title">
             <h2>Our Services & Experts</h2>
             <p>Every element of your wedding handled by specialized hands</p>
         </section>
 
         <div class="services-grid">
-            <!-- Service 1 -->
+            
             <div class="service-card">
                 <div class="service-icon">✨</div>
                 <h3>Full Wedding Coordination</h3>
                 <p>Complete management from venue scouting to budget tracking and timeline execution on the big day.</p>
                 <div class="assigned-expert">
                     <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=100" alt="Sarah">
-                    <span>Managed by <strong>Sarah Jenkins</strong></span>
+                    <span>Managed by <strong>Sujana</strong></span>
                 </div>
             </div>
 
-            <!-- Service 2 -->
+           
             <div class="service-card">
                 <div class="service-icon">📸</div>
                 <h3>Photography & Videography</h3>
                 <p>Full-day coverage, engagement shoots, and cinematic highlight reels utilizing state-of-the-art editing.</p>
                 <div class="assigned-expert">
                     <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=100" alt="David">
-                    <span>Managed by <strong>David Chen</strong></span>
+                    <span>Managed by <strong>Uppendra</strong></span>
                 </div>
             </div>
 
-            <!-- Service 3 -->
             <div class="service-card">
                 <div class="service-icon">💐</div>
                 <h3>Floral & Spatial Design</h3>
                 <p>Custom centerpieces, bridal bouquets, dramatic altar backdrops, and ambient lighting conceptualization.</p>
                 <div class="assigned-expert">
                     <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=100" alt="Elena">
-                    <span>Managed by <strong>Elena Rostova</strong></span>
+                    <span>Managed by <strong>Hema</strong></span>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- Footer -->
+
    <footer class="footer">
 
     <div class="footer-container">
@@ -756,8 +755,8 @@ nav a:hover{
         <div class="footer-box">
 
             <h3>Contact</h3>
-
-            <p>📍 Chittoor, Andhra Pradesh</p>
+            <p><i class="fas fa-location-dot"></i> Reshama Sadhanala, Andhra Pradesh</p>
+            <p>📍 Vizaingaram, Andhra Pradesh</p>
 
             <p>📞 +91 98765 43210</p>
 
